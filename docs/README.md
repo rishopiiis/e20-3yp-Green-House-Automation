@@ -8,7 +8,7 @@ title: Green House Automation (G5)
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# MIS-for-Non-Academic-Establishment-Division
+# Green House Automation
 
 ---
 

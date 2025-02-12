@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="shortcut icon" href="/docs/images/logopng.png" type="Image/x-icon">
+    <title>Green-Tech</title>
+    <style>
+        .spinner{
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            background-color: rgb(232,232,232);
+            border: 7px solid rgb(1,105,77);
+            border-top: 7px solid #1a1a19;
+            animation: spin 2s infinite linear;
+        }
+        .loader{
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(232,232,232);
+            width: 100vw;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+        
+
+    </style>
+
+</head>
+<body class="w-full">
+
+  <header class="fixed w-full z-2 bg-white opacity-90 shadow-md">
+    <div class="mx-auto flex justify-between items-center py-4 px-6 md:px-12">
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+            <img src="/docs/images/logopng2.png" class="w-10 md:w-12" alt="">
+            <a href="#home">
+                <h1 class="text-xl md:text-2xl font-bold text-[rgb(1,105,77)]">Green-Tech</h1>
+            </a>
+        </div>
+
+        <!-- Hamburger Menu (Mobile) -->
+        <div class="md:hidden">
+            <button id="menu-btn" class="text-[rgb(1,105,77)] text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Navigation (Desktop) -->
+        <nav class="hidden md:flex">
+            <ul class="flex space-x-6 text-[rgb(1,105,77)] font-bold">
+                <li><a href="#home" class="hover:text-green-500">Home</a></li>
+                <li><a href="#about" class="hover:text-green-500">About</a></li>
+                <li><a href="#SolutionArchitecture" class="hover:text-green-500">Solution Architecture</a></li>
+                <li><a href="#budget" class="hover:text-green-500">Budget</a></li>
+                <li><a href="#team" class="hover:text-green-500">Team</a></li>
+            </ul>
+        </nav>
+
+        <!-- Repository Link -->
+        <div class="hidden md:block">
+            <a class="text-[rgb(1,105,77)] font-bold hover:text-green-500" 
+               href="https://github.com/cepdnaclk/e20-3yp-Green-House-Automation" 
+               target="_blank">
+                Repository <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+        </div>
+    </div>  
+
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-white shadow-md md:hidden">
+        <ul class="flex flex-col items-center space-y-4 py-4 text-[rgb(1,105,77)] font-bold">
+            <li><a href="#home" class="hover:text-green-500">Home</a></li>
+            <li><a href="#about" class="hover:text-green-500">About</a></li>
+            <li><a href="#SolutionArchitecture" class="hover:text-green-500">Solution Architecture</a></li>
+            <li><a href="#budget" class="hover:text-green-500">Budget</a></li>
+            <li><a href="#team" class="hover:text-green-500">Team</a></li>
+            <li>
+                <a class="text-[rgb(1,105,77)] font-bold hover:text-green-500" 
+                   href="https://github.com/cepdnaclk/e20-3yp-Green-House-Automation" 
+                   target="_blank">
+                    Repository <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+    <!-- main -->
+    <div class="relative isolate w-full h-screen" id="home">
+      <img src="/docs/images/bannerImg.jpg" alt="banner image" class="h-full w-full object-cover"/>
+      <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 absolute inset-0 flex items-center justify-center">
+        <div class="text-center">
+          <h1 class="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">GREEN HOUSE AUTOMATION</h1>
+          <p class="mt-8 text-lg font-medium text-pretty text-gray-200 sm:text-xl/8">Make life easier with Green-Tech</p>
+          <div class="mt-10 flex items-center justify-center gap-x-6">
+            <a href="#" target="_blank" class="rounded-md bg-[rgb(1,105,77)] px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-green-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Repository</a>
+            <a href="#about" class="text-sm/6 font-semibold text-gray-300" >Learn more <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- about -->
+    <div class="relative isolate overflow-hidden bg-[rgb(1,105,77)] py-24 sm:py-32" id="about">
+        <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
+          <div class="aspect-1097/845 w-[68.5625rem] bg-linear-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu" aria-hidden="true">
+          <div class="aspect-1097/845 w-[68.5625rem] bg-linear-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl lg:mx-0">
+            <h2 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">Introduction</h2>
+            <p class="mt-8 text-lg font-medium text-pretty text-gray-300 sm:text-xl/8">Greenhouse farming plays a crucial role in modern agriculture, enabling year-round cultivation, improved crop yields, 
+              and better resource management. However, traditional greenhouse systems require constant human monitoring and intervention, 
+              leading to inefficiencies and labor-intensive processes. This project aims to develop an IoT-based Smart Greenhouse Automation 
+              System to optimize environmental conditions, enhance productivity, and minimize manual intervention.</p>
+          </div>
+          <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
+            <div class="grid grid-cols-1 gap-x-8 gap-y-6 text-base/7 font-semibold text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+              <p class="text-5xl md:text-6xl">Features</p>
+            </div>
+            <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
+              <div class="flex flex-col-reverse gap-1">
+                <dt class="text-base/7 text-gray-300">Mobile app integration for real-time access and adjustments</dt>
+                <dd class="text-2xl font-semibold tracking-tight text-white">Remote Monitoring & Control</dd>
+              </div>
+              <div class="flex flex-col-reverse gap-1">
+                <dt class="text-base/7 text-gray-300">Based on the soil moisture level irrigation will adjust</dt>
+                <dd class="text-2xl font-semibold tracking-tight text-white">Automatic irrigation control</dd>
+              </div>
+              <div class="flex flex-col-reverse gap-1">
+                <dt class="text-base/7 text-gray-300">When the need for nutrients arises, the system will supply them accordingly</dt>
+                <dd class="text-2xl font-semibold tracking-tight text-white">Automatic Nutrients control</dd>
+              </div>
+              <div class="flex flex-col-reverse gap-1">
+                <dt class="text-base/7 text-gray-300">Based on the previous data, the system will provide the summary</dt>
+                <dd class="text-2xl font-semibold tracking-tight text-white">Data analysis and Summary</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- system Design -->
+    <div class="relative isolate overflow-hidden py-24 sm:py-16" id="SolutionArchitecture">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <h2 class="text-4xl font-semibold tracking-tight sm:text-6xl text-center">Solution Architecture</h2>
+        <div class="mt-10 gap-8 sm:mt-16 flex justify-center">
+          <img src="/docs/images/high-level.png" alt="" class="">
+        </div>
+        <div class="mt-10 gap-8 sm:mt-16 flex justify-center">
+          <img src="/docs/images/data-flow.png" alt="">
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- hardware&software -->
+    <div id="hardware&software" class="bg-[rgb(1,105,77)] py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <h2 class="text-4xl font-semibold tracking-tight text-white sm:text-6xl">Hardware & Software</h2>
+          <div class="mt-10 grid grid-cols-1 gap-8 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3">
+
+            <div class="bg-white rounded-lg p-8 shadow-md">
+              <h3 class="text-2xl font-semibold tracking-tight text-gray-900">Hardware</h3>
+              <p class="mt-4 text-lg/7 text-gray-600">The hardware components required for the project are listed below.</p>
+              <ul class="mt-6 space-y-4">
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">1.</span>
+                  <span class="text-lg/7 text-gray-600">ESP32</span>
+                </li>
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">2.</span>
+                  <span class="text-lg/7 text-gray-600">Soil Moisture Sensor</span>
+                </li>
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">3.</span>
+                  <span class="text-lg/7 text-gray-600">Temperature and Humidity Sensor</span>
+                </li>
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">4.</span>
+                  <span class="text-lg/7 text-gray-600">Water Pump</span>
+                </li>
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">5.</span>
+                  <span class="text-lg/7 text-gray-600">Nutrient Pump</span>
+                </li>
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">6.</span>
+                  <span class="text-lg/7 text-gray-600">NPK sensor</span>
+                </li>
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">7.</span>
+                  <span class="text-lg/7 text-gray-600">Fan</span>
+                </li>
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">8.</span>
+                  <span class="text-lg/7 text-gray-600">Relay</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-white rounded-lg p-8 shadow-md">
+              <h3 class="text-2xl font-semibold tracking-tight text-gray-900">
+                Software
+              </h3>
+              <p class="mt-4 text-lg/7 text-gray-600">
+                The software components required for the project are listed below.
+              </p>
+              <ul class="mt-6 space-y-4">
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">1.</span>
+                  <span class="text-lg/7 text-gray-600">React native</span>
+                </li>
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">2.</span>
+                  <span class="text-lg/7 text-gray-600">Springboot</span>
+                </li>
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">3.</span>
+                  <span class="text-lg/7 text-gray-600">MQTT</span>
+                </li>
+                <li class="flex items-center gap-x-2">
+                  <span class="text-[rgb(1,105,77)] text-2xl font-semibold">4.</span>
+                  <span class="text-lg/7 text-gray-600">AWS iot core</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <!-- budget -->
+    <div id="budget" class="py-24 sm:py-32">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <h2 class="text-4xl font-semibold tracking-tight sm:text-6xl">Budget</h2>
+        <table class="mt-10 w-full border-collapse border border-gray-200">
+          <thead class="bg-gray-100 px-6 py-2">
+            <tr class="text-left">
+              <th class="text-lg/7 font-semibold text-gray-600 p-2">Item</th>
+              <th class="text-lg/7 font-semibold text-gray-600 p-2">Quantity</th>
+              <th class="text-lg/7 font-semibold text-gray-600 p-2">Unit Price</th>
+              <th class="text-lg/7 font-semibold text-gray-600 p-2">Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <td class="text-lg/7 text-gray-600 p-2">ESP32</td>
+              <td class="text-lg/7 text-gray-600 p-2">3</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 1490</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 4470</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-lg/7 text-gray-600 p-2">DHT22</td>
+              <td class="text-lg/7 text-gray-600 p-2">3</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 590</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 1770</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-lg/7 text-gray-600 p-2">NPK sensor</td>
+              <td class="text-lg/7 text-gray-600 p-2">1</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 7500</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 7500</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-lg/7 text-gray-600 p-2">Capasitive moisture sensor</td>
+              <td class="text-lg/7 text-gray-600 p-2">8</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 460</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 3680</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-lg/7 text-gray-600 p-2">Fan</td>
+              <td class="text-lg/7 text-gray-600 p-2">2</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 1550</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 3100</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-lg/7 text-gray-600 p-2">Water Pump</td>
+              <td class="text-lg/7 text-gray-600 p-2">4</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 1450</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 4350</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-lg/7 text-gray-600 p-2">Jumber wires</td>
+              <td class="text-lg/7 text-gray-600 p-2">1</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 500</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 500</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-lg/7 text-gray-600 p-2">PCB board</td>
+              <td class="text-lg/7 text-gray-600 p-2">1</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 1500</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 1500</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="text-lg/7 text-gray-600 p-2">Relay</td>
+              <td class="text-lg/7 text-gray-600 p-2">5</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 300</td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 1500</td>
+            </tr>
+            <tr class="border-b border-gray-200 bg-gray-100">
+              <td class="text-lg/7 text-gray-600 p-2">TOTAL</td>
+              <td></td>
+              <td></td>
+              <td class="text-lg/7 text-gray-600 p-2">Rs. 28370</td>
+            </tr>
+         
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- ourTeam -->
+    <div class="bg-white py-24 sm:py-32 shadow-md" id="team">
+        <div class="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
+          <div class="max-w-xl">
+            <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">Meet our Teammates</h2>
+            <p class="mt-6 text-lg/8 text-gray-600">We’re the group 05 members who are passionate about what we do and dedicated to delivering the best results</p>
+          </div>
+          <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+            <li>
+              <div class="flex items-center gap-x-6">
+                <img class="md:size-42 size-36 rounded object-cover" src="/docs/images/team/eni.png" alt="">
+                <div>
+                  <h3 class="text-base/7 font-semibold tracking-tight text-gray-900">Eniyavan T.</h3>
+                  <p class="text-sm/6 font-semibold text-indigo-600">E/20/099</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center gap-x-6">
+                <img class="md:size-42 size-36 rounded object-cover" src="/docs/images/team/risho.png" alt="">
+                <div>
+                  <h3 class="text-base/7 font-semibold tracking-tight text-gray-900">Rishopika S.</h3>
+                  <p class="text-sm/6 font-semibold text-indigo-600">E/20/371</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center gap-x-6">
+                <img class="md:size-42 size-36 rounded object-cover" src="/docs/images/team/jega.jpg" alt="">
+                <div>
+                  <h3 class="text-base/7 font-semibold tracking-tight text-gray-900">Jegatheesan</h3>
+                  <p class="text-sm/6 font-semibold text-indigo-600">E/20/199</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center gap-x-6">
+                <img class="md:size-42 size-36 rounded object-cover" src="/docs/images/team/vithu.jpg" alt="">
+                <div>
+                  <h3 class="text-base/7 font-semibold tracking-tight text-gray-900">Vithushan E.T.L.</h3>
+                  <p class="text-sm/6 font-semibold text-indigo-600">E/20/416</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+    
+    <!-- footer -->
+    <footer class="p-4 bg-[rgb(1,105,77)]">
+        <div class="container mx-auto ">
+            <p class="text-[rgb(232,232,232)] font-bold text-center">&copy; Green-Tech 2025</p>
+        </div>
+    </footer>
+
+
+    <!-- loader -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".loader");
+            loader.style.display = "none";
+        })
+
+
+        const menuBtn = document.getElementById("menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/1fe482ab8f.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 import { Link } from 'expo-router'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 
 const about = () => {
   const [data, setData] = useState('')

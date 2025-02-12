@@ -1,10 +1,10 @@
 import { Link, router } from 'expo-router';
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet, Button, Pressable } from 'react-native'
 
-const login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+const Login:React.FC = () => {
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
     const handleRegister = () => {
         if (password == '' || email == "") {
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
     }
 }) 
 
-export default login
+export default Login

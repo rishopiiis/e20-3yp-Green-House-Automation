@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { Link } from 'expo-router'
 import { useEffect, useState } from 'react'
 
-const about = () => {
+const About:React.FC = () => {
   const [data, setData] = useState('')
 
   return (
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default about
+export default About

@@ -2,10 +2,10 @@ import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native'
 import React, { useState } from 'react'
 import { Link, router } from 'expo-router'
 
-const register = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
+const Register:React.FC = () => {
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+    const [confirmPassword, setConfirmPassword] = useState<string>('')
 
     const handleRegister = () => {
         if (password == '' || confirmPassword == "" || email == "") {
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
 
 }) 
 
-export default register
+export default Register

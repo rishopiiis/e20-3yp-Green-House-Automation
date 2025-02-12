@@ -3,9 +3,9 @@ import { Link, router } from "expo-router";
 import { useEffect, useState } from "react";
 import {StyleSheet, Text, View } from "react-native";
 
-export default function Page() {
-  const [data, setData] = useState('');
-  const [isLogin, setIsLogin] = useState(false);
+const Page:React.FC = () => {
+  const [data, setData] = useState<any>('');
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(()=>{
     setTimeout(() => {
@@ -36,3 +36,5 @@ const styles = StyleSheet.create({
     color: 'rgb(232, 232, 232)',
   }
 });
+
+export default Page;

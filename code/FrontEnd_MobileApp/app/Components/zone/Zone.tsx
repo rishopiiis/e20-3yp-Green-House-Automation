@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Header from '../common/Header';  
 import Footer from '../common/Footer';  
-import GrowComponents from '../components/GrowComponents';
-import GrowData from '../components/GrowData';
+import GrowComponents from './GrowComponents';
+import GrowData from './GrowData';
 
 const Zone: React.FC = () => {
   const [selectedZone, setSelectedZone] = useState<string>('ZONE 1');

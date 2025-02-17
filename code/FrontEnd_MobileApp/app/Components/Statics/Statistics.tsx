@@ -1,3 +1,4 @@
+// export default StatisticsDisplay;
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -8,9 +9,13 @@ import {
 } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 
+const API_URL =
+  "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_change=true&include_24hr_vol=true";
+
 const StatisticsDisplay = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({}); // Store statistical analysis
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,8 +23,15 @@ const StatisticsDisplay = () => {
         const response = await fetch(API_URL);
         const result = await response.json();
 
-        if (Array.isArray(result)) {
-          setData(result.reverse()); // Ensure newest data is last for chart
+        if (result.bitcoin) {
+          const priceData = [
+            {
+              value: result.bitcoin.usd,
+              timestamp: new Date(),
+            },
+          ];
+          setData(priceData); // Store the current price data
+          analyzeData(priceData); // Perform statistical analysis
         }
 
         setLoading(false);
@@ -34,6 +46,20 @@ const StatisticsDisplay = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Function to calculate statistical insights
+  const analyzeData = (data) => {
+    if (data.length === 0) return;
+
+    const values = data.map((item) => item.value || 0);
+    const sum = values.reduce((a, b) => a + b, 0);
+    const avg = sum / values.length;
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    const trend = values[values.length - 1] - values[0]; // Last - First Value
+
+    setStats({ avg, min, max, trend });
+  };
+
   if (loading) {
     return (
       <View style={styles.container}>
@@ -45,39 +71,29 @@ const StatisticsDisplay = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Live Sensor Stats</Text>
+      <Text style={styles.title}>Live Data Statistics</Text>
 
-      {/* Temperature Chart */}
+      {/* Statistical Summary */}
+      <View style={styles.card}>
+        <Text style={styles.label}>📊 Average: {stats.avg.toFixed(2)}</Text>
+        <Text style={styles.label}>🔺 Max: {stats.max.toFixed(2)}</Text>
+        <Text style={styles.label}>🔻 Min: {stats.min.toFixed(2)}</Text>
+        <Text style={styles.label}>
+          📈 Trend: {stats.trend > 0 ? "Increasing" : "Decreasing"}
+        </Text>
+      </View>
+
+      {/* Data Chart */}
       <LineChart
         data={{
           labels: data.map((_, i) => i.toString()), // X-axis labels
-          datasets: [{ data: data.map((item) => item.temperature || 0) }], // Default to 0 if missing
+          datasets: [{ data: data.map((item) => item.value || 0) }], // Y-axis values
         }}
         width={300}
         height={220}
         chartConfig={chartConfig("#4CAF50")}
         style={styles.chart}
       />
-
-      {/* Humidity Chart */}
-      <LineChart
-        data={{
-          labels: data.map((_, i) => i.toString()),
-          datasets: [{ data: data.map((item) => item.humidity || 0) }],
-        }}
-        width={300}
-        height={220}
-        chartConfig={chartConfig("#1E90FF")}
-        style={styles.chart}
-      />
-
-      {/* Nutrition Data */}
-      <View style={styles.card}>
-        <Text style={styles.label}>🌱 Nutrition Levels</Text>
-        <Text style={styles.value}>N: {data[0]?.nutrition?.N || 0}</Text>
-        <Text style={styles.value}>P: {data[0]?.nutrition?.P || 0}</Text>
-        <Text style={styles.value}>K: {data[0]?.nutrition?.K || 0}</Text>
-      </View>
     </ScrollView>
   );
 };
@@ -117,12 +133,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#D1D5DB",
     fontWeight: "600",
-    textAlign: "center",
-  },
-  value: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#ffffff",
     textAlign: "center",
   },
   loadingText: { color: "#ffffff", marginTop: 10 },

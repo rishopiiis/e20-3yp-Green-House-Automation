@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, FlatList, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 interface HeaderProps {
   selectedZone: string;
@@ -26,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ selectedZone, setSelectedZone }) => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push('Components/Manual/SlideNew')}>
           <Ionicons name="settings" size={26} color="white" />
         </TouchableOpacity>
       </View>

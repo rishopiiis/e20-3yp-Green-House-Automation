@@ -15,43 +15,25 @@ const { width } = Dimensions.get("window");
 const imageData = [
   {
     id: 1,
-    image: require("./assets/s (5).jpg"),
+    image: require("../../../assets/ESP32.jpg"),
     description:
       "The ESP32 is a low-cost, low-power system on a chip (SoC) that features Wi-Fi and Bluetooth capabilities. It is widely used in Internet of Things (IoT) projects and can connect sensors to the cloud or mobile apps. The ESP32 allows easy integration of various sensors and is perfect for wireless communication.",
   },
   {
     id: 2,
-    image: require("./assets/s (6).jpg"),
+    image: require("../../../assets/DHT22.jpg"),
     description:
       "The DHT22 (also known as AM2302) is a digital sensor used to measure temperature and humidity. It provides reliable data with a wide range of measurements (temperature: -40°C to 80°C, humidity: 0-100%). It is ideal for applications requiring environmental monitoring, like weather stations and HVAC systems.",
   },
   {
     id: 3,
-    image: require("./assets/s (7).jpg"),
-    description:
-      "An LDR is a type of resistor that changes its resistance based on the amount of light falling on it. It is commonly used for detecting light levels and adjusting devices such as lights or alarms. A lower resistance indicates high light intensity, and a higher resistance indicates low light intensity.",
-  },
-  {
-    id: 4,
-    image: require("./assets/s (1).jpg"),
+    image: require("../../../assets/capasitive_moisture_sensor.jpg"),
     description:
       "The VH400 is a soil moisture sensor designed to measure the water content in the soil. It provides real-time data about soil moisture levels and is widely used in agriculture and gardening applications to ensure optimal watering and irrigation systems.",
   },
   {
-    id: 5,
-    image: require("./assets/s (2).jpg"),
-    description:
-      "The MQ-135 is an air quality sensor that detects a range of harmful gases such as ammonia, nitrogen oxide, alcohol, benzene, and carbon dioxide. It is commonly used to monitor indoor air quality and detect pollution levels, making it ideal for air purifiers, home automation, and environmental monitoring applications.",
-  },
-  {
-    id: 6,
-    image: require("./assets/s (3).jpg"),
-    description:
-      "The YL-83 is another type of soil moisture sensor designed for monitoring soil water content. It works by measuring the resistance between two probes inserted into the soil. The higher the moisture content, the lower the resistance.",
-  },
-  {
-    id: 7,
-    image: require("./assets/s (4).jpg"),
+    id: 4,
+    image: require("../../../assets/NPK.jpg"),
     description:
       "The NPK sensor measures the nitrogen (N), phosphorus (P), and potassium (K) content in the soil, which are essential nutrients for plant growth. This sensor helps determine the fertility of the soil and provides crucial data for optimizing fertilizers and improving plant health.",
   },
@@ -163,8 +145,7 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: "#f1f5f9",
     overflow: "hidden",
-    borderWidth: 1.6,
-    borderColor: "#ffb",
+
   },
   image: {
     width: "100%",
@@ -184,8 +165,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   arrowButton: {
-    padding: 18,
-    borderRadius: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 8,
     elevation: 5,
     shadowColor: "#ffffff",
     shadowOffset: { width: 0, height: 4 },
@@ -193,7 +175,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     borderWidth: 0.6,
     borderColor: "rgb(1,105,77)",
-    height: 80,
+    // height: 50,
   },
   activeButton: {
     backgroundColor: "rgb(1,105,77)",

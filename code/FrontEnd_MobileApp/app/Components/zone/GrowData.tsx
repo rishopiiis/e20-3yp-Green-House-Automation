@@ -18,12 +18,27 @@ const GrowData: React.FC = () => {
     { name: 'K Level', value: '20 ppm', icon: 'flask' },
   ];
 
+  const firstRow = growDataItems.slice(0, 3);
+  const secondRow = growDataItems.slice(3, 6);
+
   return (
     <View style={styles.growDataSection}>
       <Text style={styles.growDataMainTitle}>GROW DATA</Text>
 
-      <View style={styles.largeGrid}>
-        {growDataItems.map((item, index) => (
+      <View style={styles.rowContainer}>
+        {firstRow.map((item, index) => (
+          <View key={index} style={styles.growDataItem}>
+            <Text style={styles.growDataTitle}>{item.name}</Text>
+            <View style={styles.largeCircle}>
+              <Ionicons name={item.icon} size={28} color="#16F08B" />
+              <Text style={styles.circleValue}>{item.value}</Text>
+            </View>
+          </View>
+        ))}
+      </View>
+
+      <View style={styles.rowContainer}>
+        {secondRow.map((item, index) => (
           <View key={index} style={styles.growDataItem}>
             <Text style={styles.growDataTitle}>{item.name}</Text>
             <View style={styles.largeCircle}>
@@ -44,33 +59,31 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: '95%',
     alignSelf: 'center',
-    marginBottom: 20, 
+    marginBottom: 20,
   },
   growDataMainTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: 'white',
-    marginBottom: 10, 
+    marginBottom: 10,
     alignSelf: 'flex-start',
   },
-  largeGrid: {
+  rowContainer: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between', 
     width: '100%',
-    rowGap: 20,
-    columnGap: 6,
+    marginBottom: 15,
   },
   growDataItem: {
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1, 
   },
   growDataTitle: {
     fontSize: 14,
     fontWeight: 'bold',
     color: '#16F08B',
-    marginBottom: 5, 
+    marginBottom: 5,
   },
   largeCircle: {
     width: 80,
@@ -90,4 +103,5 @@ const styles = StyleSheet.create({
 });
 
 export default GrowData;
+
 

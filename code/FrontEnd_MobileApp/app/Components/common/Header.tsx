@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ selectedZone, setSelectedZone, viewZone
   const zones: string[] = ['ZONE 1', 'ZONE 2'];
 
   return (
-    <View>
+    <>
       <View style={styles.header}>
         <TouchableOpacity>
           <Ionicons name="notifications" size={26} color="white" />
@@ -56,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ selectedZone, setSelectedZone, viewZone
           </View>
         </View>
       </Modal>
-    </View>
+    </>
   );
 };
 
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0, 
-    zIndex: 1000,
+    zIndex: 10,
   },
   zoneSelector: {
     flexDirection: 'row',
@@ -99,9 +99,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
-    backgroundColor: 'white',
+    backgroundColor: '#01694D',
     width: '50%',
-    padding: 5,
+    padding: 10,
     borderRadius: 10,
   },
   modalItem: {
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     fontSize: 15,
+    color: "#F6FCDF",
     textAlign: 'center',
   },
 });

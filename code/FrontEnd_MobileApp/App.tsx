@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useState } from 'react';
 import Page from './app/index';
 import login from './app/Components/Authentication/login';
@@ -7,6 +8,7 @@ import register from './app/Components/Authentication/register';
 import about from './app/about';
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   const [isLogin, setisLogin] = useState(false);

@@ -22,28 +22,28 @@ const imageData = [
   {
     id: 1,
     name: "ESP32",
-    image: require("../../../assets/ESP32.jpg"),
+    image: require("../../../assets/ESP32.jpeg"),
     description:
       "The ESP32 is a low-cost, low-power system on a chip (SoC) that features Wi-Fi and Bluetooth capabilities. It is widely used in Internet of Things (IoT) projects and can connect sensors to the cloud or mobile apps. The ESP32 allows easy integration of various sensors and is perfect for wireless communication.",
   },
   {
     id: 2,
     name: "DHT22",
-    image: require("../../../assets/DHT22.jpg"),
+    image: require("../../../assets/DHT22.jpeg"),
     description:
       "The DHT22 (also known as AM2302) is a digital sensor used to measure temperature and humidity. It provides reliable data with a wide range of measurements (temperature: -40°C to 80°C, humidity: 0-100%). It is ideal for applications requiring environmental monitoring, like weather stations and HVAC systems.",
   },
   {
     id: 3,
     name: "Capasitive moisture sensor",
-    image: require("../../../assets/capasitive_moisture_sensor.jpg"),
+    image: require("../../../assets/Moisture_Sensor.jpeg"),
     description:
       "The VH400 is a soil moisture sensor designed to measure the water content in the soil. It provides real-time data about soil moisture levels and is widely used in agriculture and gardening applications to ensure optimal watering and irrigation systems.",
   },
   {
     id: 4,
     name: "NPK sensor",
-    image: require("../../../assets/NPK.jpg"),
+    image: require("../../../assets/NPK.jpeg"),
     description:
       "The NPK sensor measures the nitrogen (N), phosphorus (P), and potassium (K) content in the soil, which are essential nutrients for plant growth. This sensor helps determine the fertility of the soil and provides crucial data for optimizing fertilizers and improving plant health.",
   },

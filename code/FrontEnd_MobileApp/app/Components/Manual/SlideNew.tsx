@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+// import { Animated } from "react-native";
+
 import {
   Animated,
   Dimensions,
@@ -9,10 +12,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Header from "../common/Header";
 import Footer from "../common/Footer";
+import Header from "../common/Header";
 
 const { width } = Dimensions.get("window");
+const AnimatedText = Animated.createAnimatedComponent(Text);
 
 const imageData = [
   {
@@ -80,8 +84,12 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Header viewZone={false} selectedZone={''} setSelectedZone={(zone: string) => {}}/>
-      
+      <Header
+        viewZone={false}
+        selectedZone={""}
+        setSelectedZone={(zone: string) => {}}
+      />
+
       <Text style={styles.heading}>{imageData[currentIndex].name}</Text>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Image Display */}
@@ -145,8 +153,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 30,
   },
-  heading:{
-    color:"#F6FCDF",
+  heading: {
+    color: "#F6FCDF",
     fontSize: 36,
     textAlign: "center",
     marginTop: "20%",
@@ -163,7 +171,6 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: "#f1f5f9",
     overflow: "hidden",
-
   },
   image: {
     width: "100%",

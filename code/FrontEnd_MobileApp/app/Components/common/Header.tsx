@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, FlatList, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface HeaderProps {
   selectedZone: string;
@@ -36,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ selectedZone, setSelectedZone, viewZone
         </TouchableOpacity>
       </View>
 
-      <Modal visible={modalVisible} transparent animationType="fade">
+      <Modal visible={modalVisible} transparent animationType="fade" onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <FlatList
@@ -58,7 +59,8 @@ const Header: React.FC<HeaderProps> = ({ selectedZone, setSelectedZone, viewZone
         </View>
       </Modal>
 
-      <Modal visible={sidebarVisible} transparent animationType="slide">
+      <Modal visible={sidebarVisible} transparent animationType="slide" onRequestClose={() => setSidebarVisible(false)}>
+        <SafeAreaView >
         <View style={styles.sidebarContainer}>
           <View style={styles.sidebarContent}>
             <TouchableOpacity style={styles.closeButton} onPress={() => setSidebarVisible(false)}>
@@ -82,18 +84,19 @@ const Header: React.FC<HeaderProps> = ({ selectedZone, setSelectedZone, viewZone
               <Text style={styles.sidebarText}>Settings</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.sidebarItem} onPress={() => router.push('Components/Manual/SlideNew')}>
+            <TouchableOpacity style={styles.sidebarItem} onPress={() => router.push('Components/Manual/Manual')}>
               <Ionicons name="radio-sharp" size={24} color="white" />
               <Text style={styles.sidebarText}>Instruments</Text>
             </TouchableOpacity>
 
             <View style={styles.divider} />
-            <TouchableOpacity style={styles.logoutButton} onPress={() => router.push('Components/Login')}>
+            <TouchableOpacity style={styles.logoutButton} onPress={() => router.push('Components/Authentication/login')}>
               <Text style={styles.logoutText}>Log Out</Text>
             </TouchableOpacity>
             <Text style={styles.versionText}>App Version 10.2.1</Text>
           </View>
         </View>
+        </SafeAreaView>
       </Modal>
     </>
   );

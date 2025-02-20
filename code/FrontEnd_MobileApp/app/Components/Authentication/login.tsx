@@ -64,6 +64,8 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginBottom: 14,
         padding: 10,
+        color: "#F6FCDF",
+        fontSize: 16,
         width: "100%",
     },
     already: {

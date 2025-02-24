@@ -1,7 +1,6 @@
 package com.Green_Tech.Green_Tech.Entity;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collections;
@@ -12,7 +11,6 @@ import java.util.stream.Collectors;
 import static com.Green_Tech.Green_Tech.Entity.Permission.*;
 
 @Getter
-@RequiredArgsConstructor
 public enum Role {
     USER(Collections.emptySet()),
     ADMIN(
@@ -38,9 +36,13 @@ public enum Role {
 
     private final Set<Permission> permissionSet;
 
+    // Explicit constructor
+    Role(Set<Permission> permissionSet) {
+        this.permissionSet = permissionSet;
+    }
+
     public List<SimpleGrantedAuthority> getAuthorities() {
-        var authorities = getPermissionSet()
-                .stream()
+        var authorities = permissionSet.stream() // Fix: Directly access permissionSet
                 .map(permission -> new SimpleGrantedAuthority(permission.name()))
                 .collect(Collectors.toList());
 
@@ -48,3 +50,4 @@ public enum Role {
         return authorities;
     }
 }
+

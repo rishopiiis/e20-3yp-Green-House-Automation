@@ -1,10 +1,9 @@
 package com.Green_Tech.Green_Tech.Entity;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+
 
 @Getter
-@RequiredArgsConstructor
 public enum Permission {
 
     ADMIN_READ("admin:read"),
@@ -17,4 +16,9 @@ public enum Permission {
     SUPER_ADMIN_DELETE("super_admin:delete");
 
     private final String permission;
+
+    Permission(String permission) {
+        this.permission = permission;
+
+    }
 }

@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 import static com.Green_Tech.Green_Tech.Entity.Permission.*;
 
-@Getter
 public enum Role {
     USER(Collections.emptySet()),
     ADMIN(
@@ -20,29 +19,21 @@ public enum Role {
                     ADMIN_UPDATE,
                     ADMIN_DELETE
             )
-    ),
-    SUPER_ADMIN(
-            Set.of(
-                    SUPER_ADMIN_CREATE,
-                    SUPER_ADMIN_READ,
-                    SUPER_ADMIN_UPDATE,
-                    SUPER_ADMIN_DELETE,
-                    ADMIN_DELETE,
-                    ADMIN_UPDATE,
-                    ADMIN_READ,
-                    ADMIN_CREATE
-            )
     );
+
+    public Set<Permission> getPermissionSet() {
+        return permissionSet;
+    }
 
     private final Set<Permission> permissionSet;
 
-    // Explicit constructor
     Role(Set<Permission> permissionSet) {
         this.permissionSet = permissionSet;
     }
 
     public List<SimpleGrantedAuthority> getAuthorities() {
-        var authorities = permissionSet.stream() // Fix: Directly access permissionSet
+        var authorities = getPermissionSet()
+                .stream()
                 .map(permission -> new SimpleGrantedAuthority(permission.name()))
                 .collect(Collectors.toList());
 
@@ -50,4 +41,3 @@ public enum Role {
         return authorities;
     }
 }
-

@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         padding: 10,
         width: "100%",
-        color: "rgb(232, 232, 232)",
+        color: "#F6FCDF",
+        fontSize: 16,
     },
     already: {
         marginTop: 20,

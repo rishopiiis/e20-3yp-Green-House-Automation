@@ -28,13 +28,13 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {auth
-                        .requestMatchers("api/auth/**").permitAll()
+                        .requestMatchers("api/**").permitAll()
 
-                        .requestMatchers("/api/admin/**").hasAnyRole(ADMIN.name())
-                        .requestMatchers(HttpMethod.GET, "/api/admin/**").hasAnyAuthority(ADMIN_READ.name())
-                        .requestMatchers(HttpMethod.POST, "/api/admin/**").hasAnyAuthority(ADMIN_CREATE.name())
-                        .requestMatchers(HttpMethod.PUT, "/api/admin/**").hasAnyAuthority(ADMIN_UPDATE.name())
-                        .requestMatchers(HttpMethod.DELETE, "/api/admin/**").hasAnyAuthority(ADMIN_DELETE.name())
+                        .requestMatchers("/api/v1/admin/**").hasAnyRole(ADMIN.name())
+                        .requestMatchers(HttpMethod.GET, "/api/v1/admin/**").hasAnyAuthority(ADMIN_READ.name())
+                        .requestMatchers(HttpMethod.POST, "/api/v1/admin/**").hasAnyAuthority(ADMIN_CREATE.name())
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/admin/**").hasAnyAuthority(ADMIN_UPDATE.name())
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/admin/**").hasAnyAuthority(ADMIN_DELETE.name())
                         .anyRequest().authenticated();
                 });
         http

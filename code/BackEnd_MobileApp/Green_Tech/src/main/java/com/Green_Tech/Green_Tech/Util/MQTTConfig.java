@@ -1,5 +1,8 @@
 package com.Green_Tech.Green_Tech.Util;
 
+import com.Green_Tech.Green_Tech.Service.SensorDataService;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import software.amazon.awssdk.crt.CRT;
 import software.amazon.awssdk.crt.CrtResource;
 import software.amazon.awssdk.crt.CrtRuntimeException;
@@ -15,8 +18,12 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 
-//mvn compile exec:java -Dexec.mainClass=com.Green_Tech.Green_Tech.Util.MQTTConfig -Dexec.args="--endpoint a1j1bemwj6e7rr-ats.iot.ap-south-1.amazonaws.com --cert D:/Study/Engineering/3YP/ESP32/AWS_Certs/device_certificate.crt --key D:/Study/Engineering/3YP/ESP32/AWS_Certs/private_key.key"
+//mvn compile exec:java -Dexec.mainClass=com.Green_Tech.Green_Tech.Util.MQTTConfig -Dexec.args="--endpoint a1j1bemwj6e7rr-ats.iot.ap-south-1.amazonaws.com --cert "C:/Users/USER/Downloads/device_certificate.crt" --key "C:/Users/USER/Downloads/private_key.key""
 public class MQTTConfig {
+
+    @Autowired
+    private SensorDataService sensorDataService;
+
 
     // When run normally, we want to exit nicely even if something goes wrong
     // When run from CI, we want to let an exception escape which in turn causes the
@@ -101,6 +108,7 @@ public class MQTTConfig {
             CompletableFuture<Integer> subscribed = connection.subscribe(sensorTopic, QualityOfService.AT_LEAST_ONCE, (message) -> {
                 String payload = new String(message.getPayload(), StandardCharsets.UTF_8);
                 System.out.println("MESSAGE: " + payload);
+//                sensorDataService.getDataFromAWS(message.getPayload());
                 countDownLatch.countDown();
             });
             subscribed.get();

@@ -23,8 +23,8 @@ public class MQTTService {
             try {
                 // Initialize and configure MQTT connection here
                 AwsIotMqttConnectionBuilder builder = AwsIotMqttConnectionBuilder.newMtlsBuilderFromPath(
-                                "D:/Study/Engineering/3YP/ESP32/AWS_Certs/device_certificate.crt",
-                                "D:/Study/Engineering/3YP/ESP32/AWS_Certs/private_key.key")
+                                "/C:/Users/USER/Downloads/device_certificate.crt",
+                                "/C:/Users/USER/Downloads/private_key.key")
                         .withClientId("ESP32_DHT22")
                         .withEndpoint("a1j1bemwj6e7rr-ats.iot.ap-south-1.amazonaws.com");
 

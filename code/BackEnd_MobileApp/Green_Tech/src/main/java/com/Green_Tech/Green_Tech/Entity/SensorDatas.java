@@ -1,18 +1,33 @@
-package com.Green_Tech.Green_Tech.DTO;
+package com.Green_Tech.Green_Tech.Entity;
 
-public class SensorDataDTO {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "sensor_data")
+public class SensorDatas {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private Double temperature;
     private Double humidity;
     private Double soilMoisture;
+    private float nitrogenLevel;
+    private float phosphorusLevel;
+    private float potassiumLevel;
 
-    public SensorDataDTO(Double temperature, Double humidity, Double soilMoisture, float nitrogenLevel,
-                         float phosphorusLevel, float potassiumLevel) {
+    public SensorDatas(Double temperature, Double humidity, Double soilMoisture) {
         this.temperature = temperature;
         this.humidity = humidity;
         this.soilMoisture = soilMoisture;
-        this.nitrogenLevel = nitrogenLevel;
-        this.phosphorusLevel = phosphorusLevel;
-        this.potassiumLevel = potassiumLevel;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Double getTemperature() {
@@ -62,7 +77,4 @@ public class SensorDataDTO {
     public void setPotassiumLevel(float potassiumLevel) {
         this.potassiumLevel = potassiumLevel;
     }
-    private float nitrogenLevel;
-    private float phosphorusLevel;
-    private float potassiumLevel;
 }

@@ -1,5 +1,7 @@
 package com.Green_Tech.Green_Tech.Util;
 
+import com.Green_Tech.Green_Tech.Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import software.amazon.awssdk.crt.CRT;
 import software.amazon.awssdk.crt.CrtResource;
 import software.amazon.awssdk.crt.CrtRuntimeException;

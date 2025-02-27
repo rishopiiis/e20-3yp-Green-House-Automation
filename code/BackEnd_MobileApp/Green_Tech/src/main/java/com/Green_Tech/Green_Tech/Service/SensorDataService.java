@@ -1,7 +1,7 @@
 package com.Green_Tech.Green_Tech.Service;
 
 import com.Green_Tech.Green_Tech.DTO.SensorDataDTO;
-import com.Green_Tech.Green_Tech.Entity.SensorDatas;
+import com.Green_Tech.Green_Tech.Entity.SensorData;
 import com.Green_Tech.Green_Tech.Repository.SensorDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class SensorDataService {
                 .collect(Collectors.toList());
     }
 
-    private SensorDataDTO convertToDTO(SensorDatas sensorData) {
+    private SensorDataDTO convertToDTO(SensorData sensorData) {
         return new SensorDataDTO(
                 sensorData.getTemperature(),
                 sensorData.getHumidity(),

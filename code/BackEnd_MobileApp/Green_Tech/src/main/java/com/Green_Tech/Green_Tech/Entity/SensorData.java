@@ -1,19 +1,47 @@
-package com.Green_Tech.Green_Tech.DTO;
+package com.Green_Tech.Green_Tech.Entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
 
-public class SensorDataDTO {
-    private float temperature;
+import java.util.Date;
 
-    public SensorDataDTO(float temperature, float humidity, float soilMoisture, float nitrogenLevel, float phosphorusLevel, float potassiumLevel) {
+@Entity
+public class SensorData {
+    public SensorData(Long id, float temperature, float humidity, float soilMoisture, float nitrogenLevel, float phosphorusLevel, float potassiumLevel, Date updatedAt) {
+        this.id = id;
         this.temperature = temperature;
         this.humidity = humidity;
         this.soilMoisture = soilMoisture;
         this.nitrogenLevel = nitrogenLevel;
         this.phosphorusLevel = phosphorusLevel;
         this.potassiumLevel = potassiumLevel;
+        this.updatedAt = updatedAt;
+    }
+
+    public SensorData(Long id) {
+        this.id = id;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private float temperature;
+    private float humidity;
+    private float soilMoisture;
+    private float nitrogenLevel;
+    private float phosphorusLevel;
+    private float potassiumLevel;
+    private Date updatedAt;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public float getTemperature() {
@@ -64,9 +92,11 @@ public class SensorDataDTO {
         this.potassiumLevel = potassiumLevel;
     }
 
-    private float humidity;
-    private float soilMoisture;
-    private float nitrogenLevel;
-    private float phosphorusLevel;
-    private float potassiumLevel;
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

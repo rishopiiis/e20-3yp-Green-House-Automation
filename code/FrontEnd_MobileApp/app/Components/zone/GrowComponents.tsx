@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 interface GrowComponentsProps {
@@ -8,6 +8,25 @@ interface GrowComponentsProps {
 }
 
 const GrowComponents: React.FC<GrowComponentsProps> = ({ isEnabled, toggleStatus }) => {
+  const sendControlSignal = async (index: number, status: boolean) => {
+    try {
+      const response = await fetch("http://localhost:8080/api/v1/sensors/controlsignal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          device: index, // Send device index (0 - Fan, 1 - Nutrients, 2 - Water, 3 - Light)
+          turnOn: status, // true or false
+        }),
+      });
+
+      const result = await response.text();
+      Alert.alert("Response", result);
+      toggleStatus(index); // Update UI state
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <View style={styles.section}>
       <Text style={styles.title}>GROW COMPONENTS</Text>
@@ -26,7 +45,7 @@ const GrowComponents: React.FC<GrowComponentsProps> = ({ isEnabled, toggleStatus
 
             <TouchableOpacity
               style={[styles.statusButton, isEnabled[index] ? styles.statusOn : styles.statusOff]}
-              onPress={() => toggleStatus(index)}
+              onPress={() => sendControlSignal(index, !isEnabled[index])}
             >
               <Ionicons name="checkmark-circle" size={18} color={isEnabled[index] ? '#16F08B' : '#555'} />
               <Text style={[styles.statusText, { color: isEnabled[index] ? '#16F08B' : 'gray' }]}>

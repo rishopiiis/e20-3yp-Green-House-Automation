@@ -15,9 +15,11 @@ const GrowData: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/sensors') // Adjust if hosted externally
+    setInterval(() => {
+      axios.get('http://localhost:8080/api/v1/sensors/currentData') // Adjust if hosted externally
       .then(response => {
-        const sensorData = response.data[0]; // Assuming only one row of sensor data
+        const sensorData = response.data
+        console.log(sensorData);
         const formattedData: GrowDataItem[] = [
           { name: 'Temp', value: `${sensorData.temperature}°C`, icon: 'thermometer' },
           { name: 'Humidity', value: `${sensorData.humidity}%`, icon: 'water' },
@@ -34,6 +36,8 @@ const GrowData: React.FC = () => {
         setError('Failed to load data');
         setLoading(false);
       });
+    }, 1000);
+    
   }, []);
 
   if (loading) {

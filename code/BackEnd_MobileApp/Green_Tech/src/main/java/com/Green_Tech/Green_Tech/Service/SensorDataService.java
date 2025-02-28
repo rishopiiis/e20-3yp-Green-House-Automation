@@ -22,7 +22,7 @@ public class SensorDataService {
     }
 
 
-    public static HashMap convertByteArrayToHashMap(byte[] jsonData) {
+    public HashMap convertByteArrayToHashMap(byte[] jsonData) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.readValue(jsonData, HashMap.class);

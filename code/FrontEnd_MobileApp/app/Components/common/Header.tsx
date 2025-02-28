@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, FlatList, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
@@ -15,6 +15,17 @@ const Header: React.FC<HeaderProps> = ({ selectedZone, setSelectedZone, viewZone
   const [sidebarVisible, setSidebarVisible] = useState<boolean>(false);
 
   const zones: string[] = ['ZONE 1', 'ZONE 2'];
+
+  useEffect(() => {
+    if(!localStorage.getItem("token")){
+      router.push('Components/Authentication/login');
+    }
+  },[])
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push('Components/Authentication/login');
+  }
 
   return (
     <>
@@ -90,7 +101,7 @@ const Header: React.FC<HeaderProps> = ({ selectedZone, setSelectedZone, viewZone
             </TouchableOpacity>
 
             <View style={styles.divider} />
-            <TouchableOpacity style={styles.logoutButton} onPress={() => router.push('Components/Authentication/login')}>
+            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
               <Text style={styles.logoutText}>Log Out</Text>
             </TouchableOpacity>
             <Text style={styles.versionText}>App Version 10.2.1</Text>

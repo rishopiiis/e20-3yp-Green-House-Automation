@@ -18,14 +18,8 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "MjJEQkMyQTkzNkZEMkJGMkY0RjM3NDYyQjZBQkMzMjJOMzJOMzJOM0oyTkozSjIzSlNOMzIzRU5EMjM4MzI0TkRKMlM4U1c";
-//    private String SECRET_KEY = "";
-
-//    public JwtService() throws NoSuchAlgorithmException {
-//        KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
-//        SecretKey secretKey = keyGenerator.generateKey();
-//        SECRET_KEY = Base64.getEncoder().encodeToString(secretKey.getEncoded());
-//    }
+    private static final String SECRET_KEY = "MjJEQkMyQTkzNkZEMkJGMkY0RjM3NDYyQjZBQkMzMjJOMzJOMzJOM0oy" +
+            "TkozSjIzSlNOMzIzRU5EMjM4MzI0TkRKMlM4U1c";
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         try{

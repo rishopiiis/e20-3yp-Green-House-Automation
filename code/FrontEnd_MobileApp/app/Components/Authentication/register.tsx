@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native'
 import React, { useState } from 'react'
 import { Link, router } from 'expo-router'
+import axios from 'axios'
 
 const Register:React.FC = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [confirmPassword, setConfirmPassword] = useState<string>('')
 
-    const handleRegister = () => {
+    const handleRegister = async () => {
         if (password == '' || confirmPassword == "" || email == "") {
             alert("Fill the feilds");
             return;
@@ -18,7 +19,14 @@ const Register:React.FC = () => {
             return;
         }
 
-        router.push("/Components/Authentication/login");
+        try {
+            const response = await axios.post("http://localhost:8080/api/v1/auth/user/register", {email, password, confirmPassword});
+            console.log(response.data);
+            router.push("/Components/Authentication/login");
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
     
   return (

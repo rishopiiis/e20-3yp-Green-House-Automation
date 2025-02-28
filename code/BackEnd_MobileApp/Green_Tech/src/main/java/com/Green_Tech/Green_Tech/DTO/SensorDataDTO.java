@@ -4,9 +4,12 @@ public class SensorDataDTO {
     private Double temperature;
     private Double humidity;
     private Double soilMoisture;
+    private Double nitrogenLevel;
+    private Double phosphorusLevel;
+    private Double potassiumLevel;
 
-    public SensorDataDTO(Double temperature, Double humidity, Double soilMoisture, float nitrogenLevel,
-                         float phosphorusLevel, float potassiumLevel) {
+    public SensorDataDTO(Double temperature, Double humidity, Double soilMoisture, Double nitrogenLevel,
+                         Double phosphorusLevel, Double potassiumLevel) {
         this.temperature = temperature;
         this.humidity = humidity;
         this.soilMoisture = soilMoisture;
@@ -39,30 +42,28 @@ public class SensorDataDTO {
         this.soilMoisture = (double) soilMoisture;
     }
 
-    public float getNitrogenLevel() {
+    public Double getNitrogenLevel() {
         return nitrogenLevel;
     }
 
     public void setNitrogenLevel(float nitrogenLevel) {
-        this.nitrogenLevel = nitrogenLevel;
+        this.nitrogenLevel = (double) nitrogenLevel;
     }
 
-    public float getPhosphorusLevel() {
+    public Double getPhosphorusLevel() {
         return phosphorusLevel;
     }
 
     public void setPhosphorusLevel(float phosphorusLevel) {
-        this.phosphorusLevel = phosphorusLevel;
+        this.phosphorusLevel = (double) phosphorusLevel;
     }
 
-    public float getPotassiumLevel() {
+    public Double getPotassiumLevel() {
         return potassiumLevel;
     }
 
     public void setPotassiumLevel(float potassiumLevel) {
-        this.potassiumLevel = potassiumLevel;
+        this.potassiumLevel = (double) potassiumLevel;
     }
-    private float nitrogenLevel;
-    private float phosphorusLevel;
-    private float potassiumLevel;
+
 }

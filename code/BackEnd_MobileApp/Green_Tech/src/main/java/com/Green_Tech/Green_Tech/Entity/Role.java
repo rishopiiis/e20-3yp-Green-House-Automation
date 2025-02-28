@@ -1,6 +1,7 @@
 package com.Green_Tech.Green_Tech.Entity;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collections;
@@ -10,6 +11,8 @@ import java.util.stream.Collectors;
 
 import static com.Green_Tech.Green_Tech.Entity.Permission.*;
 
+@Getter
+@RequiredArgsConstructor
 public enum Role {
     USER(Collections.emptySet()),
     ADMIN(
@@ -21,15 +24,7 @@ public enum Role {
             )
     );
 
-    public Set<Permission> getPermissionSet() {
-        return permissionSet;
-    }
-
     private final Set<Permission> permissionSet;
-
-    Role(Set<Permission> permissionSet) {
-        this.permissionSet = permissionSet;
-    }
 
     public List<SimpleGrantedAuthority> getAuthorities() {
         var authorities = getPermissionSet()

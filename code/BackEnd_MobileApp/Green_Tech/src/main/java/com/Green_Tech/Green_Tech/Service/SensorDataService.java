@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class SensorDataService {
@@ -19,7 +17,7 @@ public class SensorDataService {
     @Autowired
     private SensorDataRepository sensorDataRepository;
 
-    public SensorDatas getAllSensorData() {
+    public SensorData getAllSensorData() {
         return sensorDataRepository.findFirstByOrderByIdDesc();
 
     }
@@ -34,16 +32,22 @@ public class SensorDataService {
     }
     public void getDataFromAWS(byte[] data){
         HashMap awsData = convertByteArrayToHashMap(data);
-        System.out.println("temperature -->" + awsData.get("temperature"));
-        SensorDatas sensorDatas = new SensorDatas((Double) awsData.get("temperature"), (Double) awsData.get("temperature"),
-                (Double) awsData.get("temperature"));
+        assert awsData != null;
+        SensorData sensorData = SensorData.builder()
+                .humidity(awsData.get("humidity") instanceof Integer ? Double.valueOf((Integer) awsData.get("humidity"))
+                        : (Double) awsData.get("humidity"))
+                .soilMoisture(awsData.get("moisture") instanceof Integer ? Double.valueOf((Integer) awsData.get("moisture"))
+                        : (Double) awsData.get("moisture"))
+                .temperature(awsData.get("temperature") instanceof Integer ? Double.valueOf((Integer) awsData.get("temperature"))
+                        : (Double) awsData.get("temperature"))
+                .nitrogenLevel(0.001)
+                .phosphorusLevel(0.001)
+                .potassiumLevel(0.001)
+                .updatedAt(new Date())
+                .build();
 
-        sensorDataRepository.save(sensorDatas);
+        sensorDataRepository.save(sensorData);
     }
-
-
-
-
 
 
     private SensorDataDTO convertToDTO(SensorData sensorData) {
@@ -56,8 +60,4 @@ public class SensorDataService {
                 sensorData.getPotassiumLevel()
         );
     }
-
-
-
-
 }

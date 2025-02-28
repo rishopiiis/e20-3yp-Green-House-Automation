@@ -7,6 +7,8 @@
 #define AWS_IOT_PUBLISH_TOPIC "ESP32/PUB"
 #define AWS_IOT_SUBSCRIBE_TOPIC "ESP32/SUB"
 
+const char *command = "NULL";
+
 WiFiClientSecure net = WiFiClientSecure();
 PubSubClient client(net);
 
@@ -69,6 +71,9 @@ void publishMessage(float h, float t, int m)
   client.publish(AWS_IOT_PUBLISH_TOPIC, jsonBuffer);
 }
 
+
+
+
 void messageHandler(char *topic, byte *payload, unsigned int length)
 {
   Serial.print("incoming: ");
@@ -78,4 +83,15 @@ void messageHandler(char *topic, byte *payload, unsigned int length)
   deserializeJson(doc, payload);
   const char *message = doc["message"];
   Serial.println(message);
+  command = message;
 }
+
+
+// // Process received commands
+// const char* handleControlMessage()
+// {
+//   Serial.print("Processing Command: ");
+//   Serial.println(command);
+
+//   return command;
+// }

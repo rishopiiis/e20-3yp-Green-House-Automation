@@ -22,18 +22,6 @@ public enum Role {
                     ADMIN_UPDATE,
                     ADMIN_DELETE
             )
-    ),
-    SUPER_ADMIN(
-            Set.of(
-                    SUPER_ADMIN_CREATE,
-                    SUPER_ADMIN_READ,
-                    SUPER_ADMIN_UPDATE,
-                    SUPER_ADMIN_DELETE,
-                    ADMIN_DELETE,
-                    ADMIN_UPDATE,
-                    ADMIN_READ,
-                    ADMIN_CREATE
-            )
     );
 
     private final Set<Permission> permissionSet;

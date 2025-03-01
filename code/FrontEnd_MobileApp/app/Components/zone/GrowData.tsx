@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import axios from 'axios';
 
 interface GrowDataItem {
   name: string;
@@ -9,14 +10,43 @@ interface GrowDataItem {
 }
 
 const GrowData: React.FC = () => {
-  const growDataItems: GrowDataItem[] = [
-    { name: 'Temp', value: '82.4°F', icon: 'thermometer' },
-    { name: 'Humidity', value: '43%', icon: 'water' },
-    { name: 'Soil Moisture', value: '57.4°F', icon: 'leaf' },
-    { name: 'N Level', value: '24 ppm', icon: 'flask' },
-    { name: 'P Level', value: '30 ppm', icon: 'flask' },
-    { name: 'K Level', value: '20 ppm', icon: 'flask' },
-  ];
+  const [growDataItems, setGrowDataItems] = useState<GrowDataItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setInterval(() => {
+      axios.get('http://localhost:8080/api/v1/sensors/currentData') // Adjust if hosted externally
+      .then(response => {
+        const sensorData = response.data
+        console.log(sensorData);
+        const formattedData: GrowDataItem[] = [
+          { name: 'Temp', value: `${sensorData.temperature}°C`, icon: 'thermometer' },
+          { name: 'Humidity', value: `${sensorData.humidity}%`, icon: 'water' },
+          { name: 'Soil Moisture', value: `${sensorData.soilMoisture}%`, icon: 'leaf' },
+          { name: 'N Level', value: `${sensorData.nitrogenLevel} ppm`, icon: 'flask' },
+          { name: 'P Level', value: `${sensorData.phosphorusLevel} ppm`, icon: 'flask' },
+          { name: 'K Level', value: `${sensorData.potassiumLevel} ppm`, icon: 'flask' },
+        ];
+        setGrowDataItems(formattedData);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Error fetching sensor data:', err);
+        setError('Failed to load data');
+        setLoading(false);
+      });
+    }, 1000);
+    
+  }, []);
+
+  if (loading) {
+    return <ActivityIndicator size="large" color="#16F08B" />;
+  }
+
+  if (error) {
+    return <Text style={{ color: 'red', textAlign: 'center' }}>{error}</Text>;
+  }
 
   const firstRow = growDataItems.slice(0, 3);
   const secondRow = growDataItems.slice(3, 6);

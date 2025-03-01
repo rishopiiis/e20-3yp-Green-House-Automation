@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Link, router } from 'expo-router';
 import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet, Button, Pressable } from 'react-native'
@@ -6,13 +7,21 @@ const Login:React.FC = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
-    const handleRegister = () => {
+    
+    const handleRegister = async () => {
         if (password == '' || email == "") {
             alert("Fill the feilds");
             return;
         }
-
-        router.push("/Components/Home/Home");
+        
+        try {
+            const response = await axios.post("http://localhost:8080/api/v1/auth/user/login", {email, password});
+            console.log(response.data);
+            localStorage.setItem("token", response.data);
+            router.push("/Components/Home/Home");
+        } catch (error: any) {
+            console.log(error.response.data.message);
+        }
     }
 
     return (
@@ -64,6 +73,8 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginBottom: 14,
         padding: 10,
+        color: "#F6FCDF",
+        fontSize: 16,
         width: "100%",
     },
     already: {

@@ -1,13 +1,17 @@
-import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, StyleSheet, TextInput, Pressable, Button } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { Link, router } from 'expo-router'
+import axios from 'axios'
+import * as WebBrowser from "expo-web-browser";
+import * as Google from "expo-auth-session/providers/google";
+import * as AuthSession from "expo-auth-session";
 
 const Register:React.FC = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [confirmPassword, setConfirmPassword] = useState<string>('')
 
-    const handleRegister = () => {
+    const handleRegister = async () => {
         if (password == '' || confirmPassword == "" || email == "") {
             alert("Fill the feilds");
             return;
@@ -18,25 +22,67 @@ const Register:React.FC = () => {
             return;
         }
 
-        router.push("/Components/Authentication/login");
+        try {
+            const response = await axios.post("http://localhost:8080/api/v1/auth/user/register", {email, password, confirmPassword});
+            console.log(response.data);
+            router.push("/Components/Authentication/login");
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
+
+    const [userInfo, setUserInfo] = useState<AuthSession.TokenResponse>();
+
+    // const redirectUri = AuthSession.makeRedirectUri({
+    //     native: "Routing://oauthredirect",
+    //   });
+    const redirectUri = "https://auth.expo.io/@vithustennysan/Routing";
+
+
+    // Function to handle Google Sign-In
+    const [request, response, promptAsync] = Google.useAuthRequest({
+        clientId: "994434333-4kpuihtinousoimldvrl537hcb008n1o.apps.googleusercontent.com",
+        redirectUri: redirectUri, // Use Expo proxy redirect
+        scopes: ["openid", "profile", "email"],
+      });
+  
+   // Handle the authentication response
+    useEffect(() => {
+        if (response?.type === "success") {
+            const { authentication } = response;
+            if (authentication) {
+                setUserInfo(authentication);
+            }
+        }
+    }, [response]);
     
-  return (
-    <View style={styles.container}>
-        <View style={styles.formContainer}>
-            <Text style={styles.title}>Register</Text>
-            <View style={styles.form}>
-                <TextInput style={styles.inputs} placeholder='Email' placeholderTextColor="rgb(173, 173, 173)" value={email} onChangeText={(value) => setEmail(value)}/>
-                <TextInput style={styles.inputs} placeholder='Password' placeholderTextColor="rgb(173, 173, 173)" value={password} onChangeText={(value) => setPassword(value)}/>
-                <TextInput style={styles.inputs} placeholder='ConfirmPassword' placeholderTextColor="rgb(173, 173, 173)" value={confirmPassword} onChangeText={(value) => setConfirmPassword(value)}/>
-                <Pressable onPress={handleRegister} style={styles.register}>
-                    <Text style={styles.text}>REGISTER</Text>
-                </Pressable>
+    return (
+        <View style={styles.container}>
+            <View style={styles.formContainer}>
+                <Text style={styles.title}>Register</Text>
+                <View style={styles.form}>
+                    <TextInput style={styles.inputs} placeholder='Email' placeholderTextColor="rgb(173, 173, 173)" value={email} onChangeText={(value) => setEmail(value)}/>
+                    <TextInput style={styles.inputs} placeholder='Password' placeholderTextColor="rgb(173, 173, 173)" value={password} onChangeText={(value) => setPassword(value)}/>
+                    <TextInput style={styles.inputs} placeholder='ConfirmPassword' placeholderTextColor="rgb(173, 173, 173)" value={confirmPassword} onChangeText={(value) => setConfirmPassword(value)}/>
+                    <Pressable onPress={handleRegister} style={styles.register}>
+                        <Text style={styles.text}>REGISTER</Text>
+                    </Pressable>
+                </View>
+                <Text style={styles.already}>Already have an one?</Text>
+                <Link href={"/Components/Authentication/login"} style={styles.login}>LOGIN</Link>
+
+                <View>
+                    {userInfo ? (
+                        <Text>Welcome! Access Token: {userInfo.accessToken}</Text>
+                    ) : (
+                        <Pressable style={styles.googleLogin}>
+                            <Text disabled={!request} onPress={() => promptAsync()} style={styles.googleLoginText}>Sign in with Google</Text>
+                        </Pressable>
+                    )}
+                </View>
             </View>
-            <Text style={styles.already}>Already have an one?</Text>
-            <Link href={"/Components/Authentication/login"} style={styles.login}>LOGIN</Link>
         </View>
-    </View>
   )
 }
 
@@ -72,7 +118,8 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         padding: 10,
         width: "100%",
-        color: "rgb(232, 232, 232)",
+        color: "#F6FCDF",
+        fontSize: 16,
     },
     already: {
         marginTop: 20,
@@ -96,6 +143,17 @@ const styles = StyleSheet.create({
     text: {
         fontWeight: "bold",
         textAlign: "center"
+    },
+    googleLoginText : {
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 15
+    },
+    googleLogin : {
+        marginTop: 20,
+        padding: 10,
+        backgroundColor: "#F6FCDF",
+        borderRadius: 5,
     }
 
 }) 

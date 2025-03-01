@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Routing",
+    "name": "Green-Tech",
     "slug": "Routing",
     "version": "1.0.0",
     "scheme": "Routing",
@@ -23,7 +23,11 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logopng.png"
+    },
+    "platforms": ["ios", "android", "web"],
+    "extra": {
+      "redirectUri": "https://auth.expo.io/@vithustennysan/Routing"
     }
   }
 }

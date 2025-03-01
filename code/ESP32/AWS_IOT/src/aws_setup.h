@@ -71,9 +71,6 @@ void publishMessage(float h, float t, int m)
   client.publish(AWS_IOT_PUBLISH_TOPIC, jsonBuffer);
 }
 
-
-
-
 void messageHandler(char *topic, byte *payload, unsigned int length)
 {
   Serial.print("incoming: ");
@@ -85,13 +82,3 @@ void messageHandler(char *topic, byte *payload, unsigned int length)
   Serial.println(message);
   command = message;
 }
-
-
-// // Process received commands
-// const char* handleControlMessage()
-// {
-//   Serial.print("Processing Command: ");
-//   Serial.println(command);
-
-//   return command;
-// }
